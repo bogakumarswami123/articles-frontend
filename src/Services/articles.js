@@ -10,7 +10,7 @@ export const getArticlesList = (searchValue, date) => {
   );
 };
 
-// This service calls backend api
+// test service calls backend api
 // export const getArticlesList = (searchValue, date) => {
 //   return axios.post(`${url}/articles/getArticleList`, {
 //     search: searchValue,
