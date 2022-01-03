@@ -12,20 +12,22 @@ class App extends React.Component {
       articleList: [],
       isSearchInProcess: false,
       searchValue: "",
-      publishedDate: "2021-11-26"
+      publishedDate: new Date()
     };
   }
   handleSearchChange = async value => {
-    let trimmedValue = value.trim();
+    let trimmedValue = value.trim().length > 0 ? value.trim() : "tesla";
     this.setState({
       isSearchInProcess: true,
       searchValue: trimmedValue
     });
-    let result = await getArticlesList(trimmedValue, this.state.publishedDate);
+    let result = await getArticlesList(
+      trimmedValue,
+      moment(this.state.publishedDate).format("YYYY-MM-DD")
+    );
     this.setState({
       isSearchInProcess: false
     });
-    console.log(result);
     if (result.data.articles) {
       this.setState({
         articleList: result.data.articles
